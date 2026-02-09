@@ -1,49 +1,51 @@
 package com.vincenzolisi.SneakVerse.ModelsDTO;
 
+import java.util.List;
+
 public class CourierDTO {
 
-    private int courierId;
-    private int phoneNumber;
-    private int shipmentId;
+    private Integer courierId;
+    private String phoneNumber;
+    private List<Integer> shipmentIds;
 
     public CourierDTO() {  }
 
-    public CourierDTO(int courierId, int phoneNumber, int shipmentId) {
+    public CourierDTO(Integer courierId, String phoneNumber, List<Integer> shipmentIds) {
         this.courierId = courierId;
         this.phoneNumber = phoneNumber;
-        this.shipmentId = shipmentId;
+        this.shipmentIds = shipmentIds;
     }
 
     public int getCourierId() {
         return courierId;
     }
 
-    public void setCourierId(int courierId) {
+    public void setCourierId(Integer courierId) {
         this.courierId = courierId;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public int getShipmentId() {
-        return shipmentId;
+    public List<Integer> getShipmentIds() {
+        return shipmentIds;
     }
 
-    public void setShipmentId(int shipmentId) {
-        this.shipmentId = shipmentId;
+    public void setShipmentIds(List<Integer> shipmentIds) {
+        this.shipmentIds = shipmentIds;
     }
 
     @Override
     public String toString() {
         return "CourierDTO{" +
                 "courierId=" + courierId +
-                ", phoneNumber=" + phoneNumber +
-                ", shipmentId=" + shipmentId +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", shipmentIds=" + shipmentIds +
                 '}';
     }
 }

@@ -3,14 +3,12 @@ package com.vincenzolisi.SneakVerse.Services;
 import com.vincenzolisi.SneakVerse.Models.Courier;
 import com.vincenzolisi.SneakVerse.Models.Shipment;
 import com.vincenzolisi.SneakVerse.ModelsDTO.CourierDTO;
-import com.vincenzolisi.SneakVerse.ModelsDTO.ShipmentDTO;
 import com.vincenzolisi.SneakVerse.Repositories.CourierRepository;
 import com.vincenzolisi.SneakVerse.Repositories.ShipmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CourierService {
@@ -22,80 +20,76 @@ public class CourierService {
     private ShipmentRepository shipmentRepository;
 
     public List<CourierDTO> getAllCourier() {
-        List<Courier> couriers = repository.findAll();
+        return repository.findAll().stream()
+                .map(c -> {
+                    CourierDTO dto = new CourierDTO();
+                    dto.setCourierId(c.getCourierId());
+                    dto.setPhoneNumber(c.getPhoneNumber());
 
-        List<CourierDTO> couriersDTO = couriers.stream()
-                .map(courier -> new CourierDTO(
-                        courier.getCourierId(),
-                        courier.getPhoneNumber(),
-                        courier.getShipment().getShipmentId()
-                ))
+                    List<Integer> shipmentIds = c.getShipments() != null
+                            ? c.getShipments().stream().map(Shipment::getShipmentId).toList()
+                            : List.of();
+
+                    dto.setShipmentIds(shipmentIds);
+                    return dto;
+                })
                 .toList();
-        return couriersDTO;
     }
 
     public CourierDTO getCourierById(int id) {
-        Optional<Courier> opt = repository.findById(id);
-        CourierDTO dto = null;
-        if(opt.isPresent()) {
-            Courier courier = opt.get();
-            dto = new CourierDTO();
-            dto.setCourierId(courier.getCourierId());
-            dto.setPhoneNumber(courier.getPhoneNumber());
-            dto.setShipmentId(courier.getShipment().getShipmentId());
-        }
-        return dto;
+        return repository.findById(id)
+                .map(c -> {
+                    CourierDTO dto = new CourierDTO();
+                    dto.setCourierId(c.getCourierId());
+                    dto.setPhoneNumber(c.getPhoneNumber());
+
+                    List<Integer> shipmentIds = c.getShipments() != null
+                            ? c.getShipments().stream().map(Shipment::getShipmentId).toList()
+                            : List.of();
+
+                    dto.setShipmentIds(shipmentIds);
+                    return dto;
+                })
+                .orElse(null);
     }
 
     public CourierDTO addCourier(CourierDTO dto) {
-        Shipment shipment = shipmentRepository.findById(dto.getShipmentId())
-                .orElseThrow(() -> new RuntimeException("Shipment not found"));
-
         Courier courier = new Courier();
         courier.setPhoneNumber(dto.getPhoneNumber());
-        courier.setShipment(shipment);
 
         courier = repository.save(courier);
-        //dto aggiornato con id generato
-        dto.setCourierId(courier.getCourierId());
-        dto.setPhoneNumber(courier.getPhoneNumber());
-        dto.setShipmentId(courier.getShipment().getShipmentId());
 
-        return dto;
+        CourierDTO out = new CourierDTO();
+        out.setCourierId(courier.getCourierId());
+        out.setPhoneNumber(courier.getPhoneNumber());
+        out.setShipmentIds(List.of());
+        return out;
     }
 
     public CourierDTO updateCourier(int id, CourierDTO dto) {
-        Optional<Courier> opt = repository.findById(id);
-        if(opt.isEmpty()) {
-            throw new RuntimeException("Courier not found");
-        }
+        Courier courier = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Courier not found"));
 
-        Courier courier = opt.get();
-
-        if(dto.getPhoneNumber() != 0) {
+        if (dto.getPhoneNumber() != null) {
             courier.setPhoneNumber(dto.getPhoneNumber());
-        }
-
-        if(dto.getShipmentId() != 0) {
-            Shipment shipment = shipmentRepository.findById(dto.getShipmentId())
-                    .orElseThrow(() -> new RuntimeException("Shipment not found"));
-            courier.setShipment(shipment);
         }
 
         courier = repository.save(courier);
 
-        //creo il DTO aggiornato
-        CourierDTO updto = new CourierDTO();
-        updto.setCourierId(courier.getCourierId());
-        updto.setPhoneNumber(courier.getPhoneNumber());
-        updto.setShipmentId(courier.getShipment().getShipmentId());
-        return updto;
+        CourierDTO out = new CourierDTO();
+        out.setCourierId(courier.getCourierId());
+        out.setPhoneNumber(courier.getPhoneNumber());
+
+        List<Integer> shipmentIds = courier.getShipments() != null
+                ? courier.getShipments().stream().map(Shipment::getShipmentId).toList()
+                : List.of();
+
+        out.setShipmentIds(shipmentIds);
+        return out;
     }
 
     public boolean deleteCourier(int id) {
-        if(!repository.existsById(id)) {
-            return false;
-        }
+        if (!repository.existsById(id)) return false;
         repository.deleteById(id);
         return true;
     }

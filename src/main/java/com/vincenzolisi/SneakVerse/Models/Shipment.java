@@ -14,7 +14,7 @@ public class Shipment {
     @JoinColumn(name = "orderId", nullable = false, unique = true)
     private Order order;
 
-    @OneToOne(optional = false)
+    @ManyToOne
     @JoinColumn(name = "courierId", nullable = false)
     private Courier courier;
 

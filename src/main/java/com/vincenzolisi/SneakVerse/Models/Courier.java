@@ -2,6 +2,9 @@ package com.vincenzolisi.SneakVerse.Models;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "courier")
 public class Courier {
@@ -11,16 +14,16 @@ public class Courier {
     private int courierId;
 
     @Column(name = "phoneNumber")
-    private int phoneNumber;
+    private String phoneNumber;
 
-    @OneToOne(mappedBy = "courier", cascade = CascadeType.ALL)
-    private Shipment shipment;
+    @OneToMany(mappedBy = "courier", cascade = CascadeType.ALL)
+    private List<Shipment> shipments = new ArrayList<>();
 
     public Courier() {  }
 
-    public Courier(int phoneNumber, Shipment shipment) {
+    public Courier(String phoneNumber, List<Shipment> shipments) {
         this.phoneNumber = phoneNumber;
-        this.shipment = shipment;
+        this.shipments = shipments;
     }
 
     public int getCourierId() {
@@ -31,28 +34,28 @@ public class Courier {
         this.courierId = courierId;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public Shipment getShipment() {
-        return shipment;
+    public List<Shipment> getShipments() {
+        return shipments;
     }
 
-    public void setShipment(Shipment shipment) {
-        this.shipment = shipment;
+    public void setShipments(List<Shipment> shipments) {
+        this.shipments = shipments;
     }
 
     @Override
     public String toString() {
         return "Courier{" +
                 "courierId=" + courierId +
-                ", phoneNumber=" + phoneNumber +
-                ", shipment=" + (shipment != null ? shipment.getShipmentId() : "null") +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", shipments=" + shipments +
                 '}';
     }
 }

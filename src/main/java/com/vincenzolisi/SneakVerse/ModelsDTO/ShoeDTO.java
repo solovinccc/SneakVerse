@@ -5,29 +5,31 @@ import java.util.List;
 
 public class ShoeDTO {
 
-    private int shoeId;
+    private Integer shoeId;
     private String shoeName;
     private BigDecimal shoePrice;
-    private Integer shoeSize;
+    private Float shoeSize;
     private List<Integer> items;
     private Integer brandId;
+    private String imageUrl;
 
-    public ShoeDTO() {  }
+    public ShoeDTO() { }
 
-    public ShoeDTO(int shoeId, String shoeName, BigDecimal shoePrice, Integer shoeSize, List<Integer> items, Integer brandId) {
+    public ShoeDTO(Integer shoeId, String shoeName, BigDecimal shoePrice, Float shoeSize, List<Integer> items, Integer brandId, String imageUrl) {
         this.shoeId = shoeId;
         this.shoeName = shoeName;
         this.shoePrice = shoePrice;
         this.shoeSize = shoeSize;
         this.items = items;
         this.brandId = brandId;
+        this.imageUrl = imageUrl;
     }
 
-    public int getShoeId() {
+    public Integer getShoeId() {
         return shoeId;
     }
 
-    public void setShoeId(int shoeId) {
+    public void setShoeId(Integer shoeId) {
         this.shoeId = shoeId;
     }
 
@@ -47,12 +49,20 @@ public class ShoeDTO {
         this.shoePrice = shoePrice;
     }
 
-    public Integer getShoeSize() {
+    public Float getShoeSize() {
         return shoeSize;
     }
 
-    public void setShoeSize(Integer shoeSize) {
+    public void setShoeSize(Float shoeSize) {
         this.shoeSize = shoeSize;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public List<Integer> getItems() {
@@ -82,5 +92,4 @@ public class ShoeDTO {
                 ", brandId=" + brandId +
                 '}';
     }
-
 }

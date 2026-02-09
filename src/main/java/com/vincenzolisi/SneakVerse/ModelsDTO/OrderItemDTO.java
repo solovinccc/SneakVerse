@@ -9,7 +9,7 @@ public class OrderItemDTO {
 
     public OrderItemDTO() {  }
 
-    public OrderItemDTO(int orderItemId, Integer quantity, Integer orderId, Integer shoeId) {
+    public OrderItemDTO(Integer orderItemId, Integer quantity, Integer orderId, Integer shoeId) {
         this.orderItemId = orderItemId;
         this.quantity = quantity;
         this.orderId = orderId;

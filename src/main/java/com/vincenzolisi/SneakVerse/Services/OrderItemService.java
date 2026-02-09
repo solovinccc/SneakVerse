@@ -25,7 +25,6 @@ public class OrderItemService {
     @Autowired
     private ShoeRepository shoeRepository;
 
-    //TEST, order e shoe possono essere null al momento
 
     public List<OrderItemDTO> getAllOrderItem() {
         List<OrderItem> items = repository.findAll();
@@ -112,7 +111,7 @@ public class OrderItemService {
         }
 
         item = repository.save(item);
-        //dto
+
         OrderItemDTO updto = new OrderItemDTO();
         updto.setOrderItemId(item.getOrderItemId());
         updto.setQuantity(item.getQuantity());

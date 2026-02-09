@@ -1,5 +1,6 @@
 package com.vincenzolisi.SneakVerse.Models;
 
+import com.vincenzolisi.SneakVerse.Models.Enum.PaymentMethod;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -20,6 +21,10 @@ public class Order {
     @JoinColumn(name = "userId")
     private User user;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "paymentMethod", nullable = false)
+    private PaymentMethod paymentMethod;
+
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> items;
 
@@ -29,10 +34,13 @@ public class Order {
 
     public Order() {  }
 
-    public Order(LocalDateTime orderDate, User user) {
-        super();
+    public Order(int orderId, LocalDateTime orderDate, User user, PaymentMethod paymentMethod, List<OrderItem> items, Shipment shipment) {
+        this.orderId = orderId;
         this.orderDate = orderDate;
         this.user = user;
+        this.paymentMethod = paymentMethod;
+        this.items = items;
+        this.shipment = shipment;
     }
 
     public int getOrderId() {
@@ -59,6 +67,14 @@ public class Order {
         this.user = user;
     }
 
+    public PaymentMethod getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(PaymentMethod paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
     public List<OrderItem> getItems() {
         return items;
     }
@@ -80,7 +96,6 @@ public class Order {
         return "Order{" +
                 "orderId=" + orderId +
                 ", orderDate=" + orderDate +
-                //stampo id dell'utente e scarpe invece dell'intero utente e intera scarpe
                 ", user=" + (user != null ? user.getUserId() : "null") +
                 ", itemsCount=" + (items != null ? items.size() : 0) +
                 '}';

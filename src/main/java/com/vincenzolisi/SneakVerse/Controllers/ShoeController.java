@@ -1,10 +1,12 @@
 package com.vincenzolisi.SneakVerse.Controllers;
 
+import com.vincenzolisi.SneakVerse.Models.Shoe;
 import com.vincenzolisi.SneakVerse.ModelsDTO.ShoeDTO;
 import com.vincenzolisi.SneakVerse.Services.ShoeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -19,7 +21,12 @@ public class ShoeController {
         return service.getAllShoe();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/avg-price")
+    public BigDecimal getAvgPrice() {
+        return service.getAverageShoePrice();
+    }
+
+    @GetMapping("/{id:\\d+}") //ho vincolato ai soli numeri cosi non potrò avere con il ritorno del prezzo medio
     public ShoeDTO getShoeById(@PathVariable int id) {
         ShoeDTO dto = service.getShoeById(id);
         if(dto == null) {
@@ -50,5 +57,11 @@ public class ShoeController {
         }
         return "Shoe deleted successfully";
     }
+
+    @GetMapping("/by-brand-name")
+    public List<ShoeDTO> byBrandName(@RequestParam String brand) {
+        return service.findShoesByBrandName(brand);
+    }
+
 
 }

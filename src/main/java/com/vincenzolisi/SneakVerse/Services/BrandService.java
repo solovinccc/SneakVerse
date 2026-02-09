@@ -94,10 +94,9 @@ public class BrandService {
             brand.setShoes(updatedShoes);
         }
 
-        //brand aggiornato
+
         brand = repository.save(brand);
 
-        //dto aggiornato
         BrandDTO updto = new BrandDTO();
         updto.setBrandId(brand.getBrandId());
         updto.setBrandName(brand.getBrandName());

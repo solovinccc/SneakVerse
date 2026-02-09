@@ -20,7 +20,10 @@ public class Shoe {
     private BigDecimal shoePrice;
 
     @Column(name = "shoeSize", nullable = false)
-    private int shoeSize;
+    private Float shoeSize;
+
+    @Column(name = "imageUrl")
+    private String imageUrl;
 
     @OneToMany(mappedBy = "shoe", cascade = CascadeType.ALL)
     private List<OrderItem> items;
@@ -31,11 +34,12 @@ public class Shoe {
 
     public Shoe() {  }
 
-    public Shoe(String shoeName, BigDecimal shoePrice, int shoeSize, Brand brand) {
+    public Shoe(String shoeName, BigDecimal shoePrice, Float shoeSize, Brand brand, String imageUrl) {
         this.shoeName = shoeName;
         this.shoePrice = shoePrice;
         this.shoeSize = shoeSize;
         this.brand = brand;
+        this.imageUrl = imageUrl;
     }
 
     public int getShoeId() {
@@ -62,12 +66,20 @@ public class Shoe {
         this.shoePrice = shoePrice;
     }
 
-    public int getShoeSize() {
+    public Float getShoeSize() {
         return shoeSize;
     }
 
-    public void setShoeSize(int shoeSize) {
+    public void setShoeSize(Float shoeSize) {
         this.shoeSize = shoeSize;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public List<OrderItem> getItems() {
@@ -93,8 +105,8 @@ public class Shoe {
                 ", shoeName='" + shoeName + '\'' +
                 ", shoePrice=" + shoePrice +
                 ", shoeSize=" + shoeSize +
-                ", brand=" + (brand != null ? brand.getBrandId() : "null") +
+                ", items=" + items +
+                ", brand=" + brand +
                 '}';
     }
-
 }

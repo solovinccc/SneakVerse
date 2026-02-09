@@ -1,7 +1,9 @@
 package com.vincenzolisi.SneakVerse.Controllers;
 
 import com.vincenzolisi.SneakVerse.Models.Order;
+import com.vincenzolisi.SneakVerse.ModelsDTO.CheckoutRequestDTO;
 import com.vincenzolisi.SneakVerse.ModelsDTO.OrderDTO;
+import com.vincenzolisi.SneakVerse.ModelsDTO.OrderViewDTO;
 import com.vincenzolisi.SneakVerse.Services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +31,7 @@ public class OrderController {
         return dto;
     }
 
-    @PostMapping("/add")
+    @PostMapping
     public OrderDTO addOrder(@RequestBody OrderDTO dto){
         return service.addOrder(dto);
     }
@@ -50,6 +52,18 @@ public class OrderController {
             throw new RuntimeException("Order with id " + id + ", not found");
         }
         return "Order deleted successfully";
+    }
+
+
+    @PostMapping("/checkout")
+    public OrderViewDTO checkout(@RequestBody CheckoutRequestDTO req) {
+        return service.checkout(req);
+    }
+
+
+    @GetMapping("/user/{userId}")
+    public List<OrderViewDTO> getUserOrdersLast12h(@PathVariable int userId) {
+        return service.getOrdersLast12hByUser(userId);
     }
 
 }

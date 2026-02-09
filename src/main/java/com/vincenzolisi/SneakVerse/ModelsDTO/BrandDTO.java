@@ -4,13 +4,13 @@ import java.util.List;
 
 public class BrandDTO {
 
-    private int brandId;
+    private Integer brandId;
     private String brandName;
     private List<Integer> shoeIds;
 
     public BrandDTO() {  }
 
-    public BrandDTO(int brandId, String brandName, List<Integer> shoeIds) {
+    public BrandDTO(Integer brandId, String brandName, List<Integer> shoeIds) {
         this.brandId = brandId;
         this.brandName = brandName;
         this.shoeIds = shoeIds;

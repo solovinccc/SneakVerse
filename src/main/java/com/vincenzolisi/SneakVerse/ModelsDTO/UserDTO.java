@@ -1,30 +1,36 @@
 package com.vincenzolisi.SneakVerse.ModelsDTO;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.vincenzolisi.SneakVerse.Models.Enum.Role;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class UserDTO {
 
     private Integer userId;
+
     private String username;
+
     private String password;
+
     private String homeAddress;
-    private List<Integer> orderIds = new ArrayList<>();
+
+    private List<Integer> orderId = new ArrayList<>();
+
+    private Role role;
 
     public UserDTO() {  }
 
-    public UserDTO(Integer userId, String username, String password, String homeAddress, List<Integer> orderIds) {
+    public UserDTO(Integer userId, String username, String password, String homeAddress, List<Integer> orderId) {
         this.userId = userId;
         this.username = username;
         this.password = password;
         this.homeAddress = homeAddress;
-        this.orderIds = orderIds;
+        this.orderId = orderId;
     }
 
-    @JsonIgnore
     public int getUserId() {
         return userId;
     }
@@ -58,11 +64,23 @@ public class UserDTO {
     }
 
     public List<Integer> getOrderId() {
-        return orderIds;
+        return orderId;
     }
 
     public void setOrderId(List<Integer> orderIds) {
-        this.orderIds = orderIds;
+        this.orderId = orderIds;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @Override
@@ -72,7 +90,7 @@ public class UserDTO {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", homeAddress='" + homeAddress + '\'' +
-                ", orderIds=" + orderIds +
+                ", orderId=" + orderId +
                 '}';
     }
 }
