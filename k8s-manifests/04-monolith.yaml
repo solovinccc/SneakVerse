@@ -1,0 +1,59 @@
+# DEPLOYMENT
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monolith-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sneakverse-monolith
+  template:
+    metadata:
+      labels:
+        app: sneakverse-monolith
+    spec:
+      containers:
+        - name: monolith-service
+          image: sneakverse-monolith:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8081
+          env:
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: sneakverse-config
+                  key: db-url-monolith
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: sneakverse-secrets
+                  key: db-username
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: sneakverse-secrets
+                  key: db-password
+            - name: SPRING_KAFKA_BOOTSTRAP_SERVERS
+              valueFrom:
+                configMapKeyRef:
+                  name: sneakverse-config
+                  key: kafka-servers
+            - name: ORDERS_SERVICE_URL
+              value: "http://sneakverse-orders:8082/api/internal/orders"
+            - name: AUTH_SERVICE_URL
+              value: "http://sneakverse-auth:8083/api/auth/validate"
+---
+# SERVICE
+apiVersion: v1
+kind: Service
+metadata:
+  name: sneakverse-monolith
+spec:
+  selector:
+    app: sneakverse-monolith
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081

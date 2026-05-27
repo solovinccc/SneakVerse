@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "{{ .Release.Name }}-config"
+data:
+  db-url-monolith: {{ .Values.db.urlMonolith | quote }}
+  db-url-orders: {{ .Values.db.urlOrders | quote }}
+  db-url-products: {{ .Values.db.urlProducts | quote }}
+  kafka-servers: {{ .Values.infra.kafka.image | replace "apache/kafka:latest" "sneakverse-kafka:9092" | quote }} 
+  jwk-set-uri: {{ .Values.security.jwkSetUri | quote }}
+  orders-internal-url: {{ .Values.services.monolith.ordersUrl | quote }}
+  auth-internal-url: {{ .Values.services.monolith.authUrl | quote }}

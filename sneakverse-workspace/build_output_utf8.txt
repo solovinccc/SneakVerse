@@ -1,0 +1,184 @@
+﻿> Task :modules:sneakverse-auth:sneakverse-auth-api:compileJava UP-TO-DATE
+> Task :modules:sneakverse-auth:sneakverse-auth-api:copyCSS NO-SOURCE
+> Task :modules:sneakverse-auth:sneakverse-auth-api:buildCSS NO-SOURCE
+> Task :modules:sneakverse-auth:sneakverse-auth-api:processResources NO-SOURCE
+> Task :modules:sneakverse-auth:sneakverse-auth-api:transpileJS SKIPPED
+> Task :modules:sneakverse-auth:sneakverse-auth-api:configJSModules SKIPPED
+> Task :modules:sneakverse-auth:sneakverse-auth-api:replaceSoyTranslation NO-SOURCE
+> Task :modules:sneakverse-auth:sneakverse-auth-api:wrapSoyAlloyTemplate SKIPPED
+> Task :modules:sneakverse-auth:sneakverse-auth-api:classes UP-TO-DATE
+> Task :modules:sneakverse-auth:sneakverse-auth-api:zipZippableResources UP-TO-DATE
+> Task :modules:sneakverse-auth:sneakverse-auth-api:jar UP-TO-DATE
+> Task :modules:sneakverse-auth:sneakverse-auth-api:autoUpdateXml SKIPPED
+
+> Task :modules:sneakverse-auth:sneakverse-auth-impl:compileJava FAILED
+.\gradlew.bat : C:\Users\A858apulia\Desktop\SneakVerse\s
+neakverse-workspace\modules\sneakverse-auth\sneakverse-a
+uth-impl\src\main\java\com\vincenzolisi\sneakverse\headl
+ess\auth\internal\resource\v1_0\SessionUserResourceImpl.
+java:4: error: cannot find symbol
+In riga:1 car:1
++ .\gradlew.bat 
+:modules:sneakverse-auth:sneakverse-auth-impl:build -x  
+...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (C:\Us    
+ers\A858ap...not find symbol:String) [], Remot    
+eException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+import com.vincenzolisi.sneakverse.headless.auth.resourc
+e.v1_0.SessionUserResource;
+                                                        
+      ^
+  symbol:   class SessionUserResource
+  location: package 
+com.vincenzolisi.sneakverse.headless.auth.resource.v1_0
+C:\Users\A858apulia\Desktop\SneakVerse\sneakverse-worksp
+ace\modules\sneakverse-auth\sneakverse-auth-impl\src\mai
+n\java\com\vincenzolisi\sneakverse\headless\auth\interna
+l\resource\v1_0\SessionUserResourceImpl.java:16: error: 
+cannot find symbol
+public class SessionUserResourceImpl extends 
+BaseSessionUserResourceImpl {
+                                             ^
+  symbol: class BaseSessionUserResourceImpl
+C:\Users\A858apulia\Desktop\SneakVerse\sneakverse-worksp
+ace\modules\sneakverse-auth\sneakverse-auth-impl\src\mai
+n\java\com\vincenzolisi\sneakverse\headless\auth\interna
+l\resource\v1_0\SessionUserResourceImpl.java:14: error: 
+cannot find symbol
+	scope = ServiceScope.PROTOTYPE, service = 
+SessionUserResource.class
+	                                          ^
+  symbol: class SessionUserResource
+C:\Users\A858apulia\Desktop\SneakVerse\sneakverse-worksp
+ace\modules\sneakverse-auth\sneakverse-auth-impl\src\mai
+n\java\com\vincenzolisi\sneakverse\headless\auth\interna
+l\resource\v1_0\AuthResourceImpl.java:68: error: no 
+suitable method found for addUser(int,long,boolean,Strin
+g,String,boolean,String,String,int,String,Locale,String,
+String,String,int,int,boolean,int,int,int,String,<null>,
+<null>,<null>,<null>,boolean,ServiceContext)
+		return userLocalService.addUser(
+		                       ^
+    method UserLocalService.addUser(long,long,boolean,St
+ring,String,boolean,String,String,Locale,String,String,S
+tring,long,long,boolean,int,int,int,String,int,long[],lo
+ng[],long[],long[],boolean,ServiceContext) is not 
+applicable
+      (actual and formal argument lists differ in 
+length)
+    method UserLocalService.addUser(User) is not 
+applicable
+      (actual and formal argument lists differ in 
+length)
+C:\Users\A858apulia\Desktop\SneakVerse\sneakverse-worksp
+ace\modules\sneakverse-auth\sneakverse-auth-impl\src\mai
+n\java\com\vincenzolisi\sneakverse\headless\auth\interna
+l\resource\v1_0\SessionUserResourceImpl.java:18: error: 
+method does not override or implement a method from a 
+supertype
+	@Override
+	^
+C:\Users\A858apulia\Desktop\SneakVerse\sneakverse-worksp
+ace\modules\sneakverse-auth\sneakverse-auth-impl\src\mai
+n\java\com\vincenzolisi\sneakverse\headless\auth\interna
+l\resource\v1_0\SessionUserResourceImpl.java:23: error: 
+cannot find symbol
+		if(contextUser != null && 
+!contextUser.isDefaultUser()) {
+		   ^
+  symbol:   variable contextUser
+  location: class SessionUserResourceImpl
+C:\Users\A858apulia\Desktop\SneakVerse\sneakverse-worksp
+ace\modules\sneakverse-auth\sneakverse-auth-impl\src\mai
+n\java\com\vincenzolisi\sneakverse\headless\auth\interna
+l\resource\v1_0\SessionUserResourceImpl.java:23: error: 
+cannot find symbol
+		if(contextUser != null && 
+!contextUser.isDefaultUser()) {
+		                           ^
+  symbol:   variable contextUser
+  location: class SessionUserResourceImpl
+C:\Users\A858apulia\Desktop\SneakVerse\sneakverse-worksp
+ace\modules\sneakverse-auth\sneakverse-auth-impl\src\mai
+n\java\com\vincenzolisi\sneakverse\headless\auth\interna
+l\resource\v1_0\SessionUserResourceImpl.java:25: error: 
+cannot find symbol
+			sessionUser.setId(contextUser.getUserId());
+			                  ^
+  symbol:   variable contextUser
+  location: class SessionUserResourceImpl
+C:\Users\A858apulia\Desktop\SneakVerse\sneakverse-worksp
+ace\modules\sneakverse-auth\sneakverse-auth-impl\src\mai
+n\java\com\vincenzolisi\sneakverse\headless\auth\interna
+l\resource\v1_0\SessionUserResourceImpl.java:26: error: 
+cannot find symbol
+			sessionUser.setEmail(contextUser.getEmailAddress());
+			                     ^
+  symbol:   variable contextUser
+  location: class SessionUserResourceImpl
+C:\Users\A858apulia\Desktop\SneakVerse\sneakverse-worksp
+ace\modules\sneakverse-auth\sneakverse-auth-impl\src\mai
+n\java\com\vincenzolisi\sneakverse\headless\auth\interna
+l\resource\v1_0\SessionUserResourceImpl.java:27: error: 
+cannot find symbol
+			sessionUser.setFirstName(contextUser.getFirstName());
+			                         ^
+  symbol:   variable contextUser
+  location: class SessionUserResourceImpl
+C:\Users\A858apulia\Desktop\SneakVerse\sneakverse-worksp
+ace\modules\sneakverse-auth\sneakverse-auth-impl\src\mai
+n\java\com\vincenzolisi\sneakverse\headless\auth\interna
+l\resource\v1_0\SessionUserResourceImpl.java:28: error: 
+cannot find symbol
+			sessionUser.setLastName(contextUser.getLastName());
+			                        ^
+  symbol:   variable contextUser
+  location: class SessionUserResourceImpl
+C:\Users\A858apulia\Desktop\SneakVerse\sneakverse-worksp
+ace\modules\sneakverse-auth\sneakverse-auth-impl\src\mai
+n\java\com\vincenzolisi\sneakverse\headless\auth\interna
+l\resource\v1_0\SessionUserResourceImpl.java:30: error: 
+cannot find symbol
+			System.out.println("API Chiamata: Utente" + 
+contextUser.getEmailAddress() + " e' loggato.");
+			                                            ^
+  symbol:   variable contextUser
+  location: class SessionUserResourceImpl
+Note: C:\Users\A858apulia\Desktop\SneakVerse\sneakverse-
+workspace\modules\sneakverse-auth\sneakverse-auth-impl\s
+rc\main\java\com\vincenzolisi\sneakverse\headless\auth\i
+nternal\resource\v1_0\BaseAuthResourceImpl.java uses or 
+overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: C:\Users\A858apulia\Desktop\SneakVerse\sneakverse-
+workspace\modules\sneakverse-auth\sneakverse-auth-impl\s
+rc\main\java\com\vincenzolisi\sneakverse\headless\auth\i
+nternal\resource\v1_0\factory\AuthResourceFactoryImpl.ja
+va uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+12 errors
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':modules:sneakverse-auth:snea
+kverse-auth-impl:compileJava'.
+> Compilation failed; see the compiler error output for 
+details.
+
+* Try:
+> Run with --info option to get more log output.
+> Run with --scan to get full insights.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.5/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 2s
+3 actionable tasks: 1 executed, 2 up-to-date

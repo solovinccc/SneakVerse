@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Release.Name }}-products"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: products
+  template:
+    metadata:
+      labels:
+        app: products
+    spec:
+      containers:
+        - name: products
+          image: {{ .Values.services.products.image | quote }}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8084
+          env:
+            - name: JAVA_TOOL_OPTIONS
+              value: "-Xms64m -Xmx256m"
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: "{{ .Release.Name }}-config"
+                  key: db-url-products
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secrets"
+                  key: db-username
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secrets"
+                  key: db-password
+            - name: SERVER_PORT
+              value: {{ .Values.services.products.port | quote }}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sneakverse-products
+spec:
+  selector:
+    app: products
+  ports:
+    - protocol: TCP
+      port: {{ .Values.services.products.port }}
+      targetPort: {{ .Values.services.products.port }}

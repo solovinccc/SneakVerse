@@ -1,0 +1,22 @@
+# SECRET per i dati sensibili
+apiVersion: v1
+kind: Secret
+metadata:
+  name: sneakverse-secrets
+type: Opaque
+stringData:
+  db-username: root
+  db-password: root
+
+---
+
+# CONFIGMAP per le configurazioni in chiaro
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sneakverse-config
+data: 
+  db-url-monolith: "jdbc:mysql://host.minikube.internal:3306/sneakverse?useSSL=false&allowPublicKeyRetrieval=true"
+  db-url-orders: "jdbc:mysql://host.minikube.internal:3306/sneakverse_orders?useSSL=false&allowPublicKeyRetrieval=true"
+  db-url-products: "jdbc:mysql://host.minikube.internal:3306/sneakverse_products?useSSL=false&allowPublicKeyRetrieval=true"
+  kafka-servers: "kafka:9092"

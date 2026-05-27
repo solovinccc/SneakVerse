@@ -1,0 +1,9 @@
+apiDir: "../sneakverse-auth-api/src/main/java"
+apiPackagePath: "com.vincenzolisi.sneakverse.headless.auth"
+application:
+    baseURI: "/sneakverse-auth"
+    className: "SneakVerseAuthApplication"
+    name: "SneakVerseAuth.Rest"
+author: "Vincenzo Lisi"
+clientDir: "../sneakverse-auth-client/src/main/java"
+implDir: "../sneakverse-auth-impl/src/main/java"

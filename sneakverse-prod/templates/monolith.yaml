@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Release.Name }}-monolith"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: monolith
+  template:
+    metadata:
+      labels:
+        app: monolith
+    spec:
+      containers:
+        - name: monolith
+          image: {{ .Values.services.monolith.image | quote }}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: {{ .Values.services.monolith.port }}
+          env:
+            - name: JAVA_TOOL_OPTIONS
+              value: "-Xms128m -Xmx512m"
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: "{{ .Release.Name }}-config"
+                  key: db-url-monolith
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secrets"
+                  key: db-username
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secrets"
+                  key: db-password
+            - name: SPRING_KAFKA_BOOTSTRAP_SERVERS
+              valueFrom:
+                configMapKeyRef:
+                  name: "{{ .Release.Name }}-config"
+                  key: kafka-servers
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secrets"
+                  key: jwt-secret
+            - name: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI
+              valueFrom:
+                configMapKeyRef:
+                  name: "{{ .Release.Name }}-config"
+                  key: jwk-set-uri
+            - name: ORDERS_SERVICE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: "{{ .Release.Name }}-config"
+                  key: orders-internal-url
+            - name: AUTH_SERVICE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: "{{ .Release.Name }}-config"
+                  key: auth-internal-url
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ .Release.Name }}-monolith"
+spec:
+  selector:
+    app: monolith
+  ports:
+    - protocol: TCP
+      port: {{ .Values.services.monolith.port }}
+      targetPort: {{ .Values.services.monolith.port }}

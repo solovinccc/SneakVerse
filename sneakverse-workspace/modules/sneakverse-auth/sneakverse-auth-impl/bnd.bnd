@@ -1,0 +1,3 @@
+Bundle-Name: sneakverse-auth-impl
+Bundle-SymbolicName: Auth.impl
+Bundle-Version: 1.0.0

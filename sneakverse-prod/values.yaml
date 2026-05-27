@@ -1,0 +1,53 @@
+global:
+  domain: sneakverse.it
+
+db:
+  username: root
+  password: root
+  urlMonolith:
+    "jdbc:mysql://sneakverse-mysql:3306/sneakverse?useSSL=false&allowP\
+    ublicKeyRetrieval=true"
+  urlOrders:
+    "jdbc:mysql://sneakverse-mysql:3306/sneakverse_orders?useSSL=false&a\
+    llowPublicKeyRetrieval=true"
+  urlProducts: "jdbc:mysql://sneakverse-mysql:3306/sneakverse_products?useSSL=false&allowPublicKeyRetrieval=true"
+
+security:
+  jwtSecret: "SneakVerseSecretKey2024!!SneakVerseSecretKey2024!!"
+
+mail:
+  username: "vincenzolisi12@gmail.com"
+  password: "urgsggdvofgiuttd"
+
+services:
+  auth:
+    image: sneakverse-auth:latest
+    port: 8083
+  monolith:
+    image: sneakverse-monolith:latest
+    port: 8081
+    ordersUrl: "http://sneakverse-orders:8082/api/internal/orders"
+    authUrl: "http://sneakverse-auth:8083/api/auth/validate"
+  orders:
+    image: sneakverse-orders:latest
+    port: 8082
+  gateway:
+    image: sneakverse-gateway:latest
+    port: 8000
+  frontend:
+    image: sneakverse-frontend:v1
+    port: 80
+  products:
+    image: sneakverse-products:latest
+    port: 8084
+
+infra:
+  mysql:
+    image: mysql:8.0
+    port: 3306
+  redis:
+    image: redis:alpine
+    port: 6379
+  kafka:
+    image: apache/kafka:latest
+    port: 9092

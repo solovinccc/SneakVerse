@@ -1,0 +1,5 @@
+Bundle-Name: sneakverse-auth-test
+Bundle-SymbolicName: Auth.test
+Bundle-Version: 1.0.0
+-includeresource: Auth.client.jar=../sneakverse-auth-client/build/libs/Auth.client-1.0.0.jar;lib:=true
+-provider-policy: ${replacestring;${range;[==,==]};.*,(.*)];$1}

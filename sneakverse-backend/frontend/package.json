@@ -1,0 +1,52 @@
+{
+  "name": "sneakverse-frontend",
+  "version": "0.1.0",
+  "description": "SneakVerse React Widget",
+  "portlet": {
+    "com.liferay.portlet.display-category": "category.sample",
+    "com.liferay.portlet.instanceable": true,
+    "javax.portlet.name": "sneakverse_frontend",
+    "javax.portlet.security-role-ref": "power-user,user",
+    "javax.portlet.display-name": "SneakVerse Frontend"
+  },
+  "private": true,
+  "dependencies": {
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build && npx liferay-npm-bundler",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && copy dist\\*.jar ..\\..\\liferay-portal\\deploy"
+  },
+  "devDependencies": {
+    "liferay-npm-bundler": "^2.0.0",
+    "liferay-npm-bundler-preset-create-react-app": "^2.0.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

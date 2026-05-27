@@ -1,0 +1,36 @@
+# DEPLOYMENT
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sneakverse-frontend
+  template:
+    metadata:
+      labels:
+        app: sneakverse-frontend
+    spec:
+      containers:
+        - name: frontend-user
+          image: sneakverse-frontend:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+---
+# SERVICE ESPOSTO (NodePort)
+apiVersion: v1
+kind: Service
+metadata:
+  name: sneakverse-frontend
+spec:
+  type: NodePort
+  selector:
+    app: sneakverse-frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30001

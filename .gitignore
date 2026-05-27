@@ -1,0 +1,64 @@
+# IDE / Editor folders
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# System Files
+Thumbs.db
+db.db
+Desktop.ini
+.DS_Store
+
+# Node / Frontend dependencies & builds
+**/node_modules/
+**/node_modules_cache/
+**/dist/
+**/build/
+**/build.liferay/
+**/.web_bundle_build/
+**/.sass-cache/
+**/test-coverage/
+**/test-results/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.env*.local
+.env.production
+.env.development
+.env.staging
+
+# Java / Maven dependencies & builds
+**/target/
+**/.mvn/
+**/mvnw.cmd
+**/mvnw
+**/*.class
+
+# Gradle dependencies & builds
+**/.gradle/
+**/build_gradle/
+**/gradle-*.properties
+/bundles/
+
+# Liferay Portal specific exclusions (Server bundle temp, logs, work, data, tomcat, etc.)
+/liferay-portal/tomcat/
+/liferay-portal/osgi/
+/liferay-portal/data/
+/liferay-portal/logs/
+/liferay-portal/work/
+/liferay-portal/deploy/
+/liferay-portal/elasticsearch-sidecar/
+/liferay-portal/glowroot/
+/liferay-portal/tools/
+/liferay-portal/glowroot-*.zip
+/liferay-portal/.idea/
+
+# Other tools & temporary folders
+**/tmp/
+**/.claude/
+**/.cursor/
+**/.gemini/
+**/.windsurf/
+**/.workspace-rules/

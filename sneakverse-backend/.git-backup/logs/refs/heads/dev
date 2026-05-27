@@ -1,0 +1,4 @@
+0000000000000000000000000000000000000000 4948dc9e77770fa4f2f64c2c4fda4f8dde12ff2c Vincenzo <vincenzolisi12@gmail.com> 1769613735 +0100	branch: Created from HEAD
+4948dc9e77770fa4f2f64c2c4fda4f8dde12ff2c 20135af9de42e6b7509d168e5757d716b9fd4a51 Vincenzo <vincenzolisi12@gmail.com> 1769613898 +0100	commit: Second commit
+20135af9de42e6b7509d168e5757d716b9fd4a51 d62dd73d886e77ea7a0953234d26328c6daa12c5 Vincenzo <vincenzolisi12@gmail.com> 1770629915 +0100	commit: third commit
+d62dd73d886e77ea7a0953234d26328c6daa12c5 e18fe81bff322bb6a3135f134c72bc381c90e5d9 Vincenzo <vincenzolisi12@gmail.com> 1770634190 +0100	commit: fix gitignore

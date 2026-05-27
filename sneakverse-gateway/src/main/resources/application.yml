@@ -1,0 +1,49 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: sneakverse-gateway
+
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins:
+              - "http://localhost:3001"
+              - "http://localhost:8080"
+              - "http://localhost:3000"
+              - "http://localhost:5173"
+              - "http://sneakverse.local:3001"
+              - "http://sneakverse.local:5173"
+              - "http://sneakverse.local"
+              - "http://sneakverse.it:3001"
+              - "http://sneakverse.it:5173"
+              - "http://sneakverse.it"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders:
+              - Authorization
+              - Content-Type
+            allowCredentials: true
+
+      routes:
+        - id: auth-service
+          uri: http://sneakverse-auth:8083
+          predicates:
+            - Path=/api/auth/**
+
+        - id: products-service
+          uri: http://sneakverse-products:8084
+          predicates:
+            - Path=/api/shoes/**
+
+        - id: monolith-service
+          uri: http://sneakverse-monolith:8081
+          predicates:
+            - Path=/api/users/**, /api/orders/**

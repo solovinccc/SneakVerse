@@ -1,0 +1,3 @@
+Bundle-Name: sneakverse-auth-client
+Bundle-SymbolicName: Auth.client
+Bundle-Version: 1.0.0

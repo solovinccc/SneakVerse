@@ -1,0 +1,8 @@
+{ 
+  "liferayDir": "C:\\Users\\A858apulia\\Desktop\\SneakVerse\\liferay-portal", 
+  "translatorTextKey": "", 
+  "supportedLocales": [], 
+  "webpack": { 
+    "rules": [ { "test": "src\\\\.*\\.js$", "use": "babel-loader" } ] 
+  } 
+}

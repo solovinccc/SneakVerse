@@ -1,0 +1,50 @@
+# DEPLOYMENT
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: products-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sneakverse-products
+  template:
+    metadata:
+      labels:
+        app: sneakverse-products
+    spec:
+      containers:
+        - name: products-service
+          image: sneakverse-products:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8084
+          env:
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: sneakverse-config
+                  key: db-url-products
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: sneakverse-secrets
+                  key: db-username
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: sneakverse-secrets
+                  key: db-password
+---
+# SERVICE
+apiVersion: v1
+kind: Service
+metadata:
+  name: sneakverse-products
+spec:
+  selector:
+    app: sneakverse-products
+  ports:
+    - protocol: TCP
+      port: 8084
+      targetPort: 8084

@@ -1,0 +1,12 @@
+apply plugin: "com.liferay.portal.tools.rest.builder"
+
+repositories {
+	mavenLocal()
+	maven {
+		url "https://repository-cdn.liferay.com/nexus/content/groups/public"
+	}
+}
+
+dependencies {
+	compileOnly group: "com.liferay.portal", name: "release.portal.api"
+}

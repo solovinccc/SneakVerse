@@ -1,0 +1,24 @@
+0000000000000000000000000000000000000000 66c3aacb5cdcb86d81e7bf6db4fe6829e73e5dfd Vincenzo <vincenzolisi12@gmail.com> 1768298842 +0100	commit (initial): Initial commit - progetto SneakVerse Java
+66c3aacb5cdcb86d81e7bf6db4fe6829e73e5dfd 66c3aacb5cdcb86d81e7bf6db4fe6829e73e5dfd Vincenzo <vincenzolisi12@gmail.com> 1768299201 +0100	checkout: moving from master to master
+66c3aacb5cdcb86d81e7bf6db4fe6829e73e5dfd 4948dc9e77770fa4f2f64c2c4fda4f8dde12ff2c Vincenzo <vincenzolisi12@gmail.com> 1768315656 +0100	commit: Added OrderItem
+4948dc9e77770fa4f2f64c2c4fda4f8dde12ff2c 4948dc9e77770fa4f2f64c2c4fda4f8dde12ff2c Vincenzo <vincenzolisi12@gmail.com> 1769613735 +0100	checkout: moving from master to dev
+4948dc9e77770fa4f2f64c2c4fda4f8dde12ff2c 20135af9de42e6b7509d168e5757d716b9fd4a51 Vincenzo <vincenzolisi12@gmail.com> 1769613898 +0100	commit: Second commit
+20135af9de42e6b7509d168e5757d716b9fd4a51 d62dd73d886e77ea7a0953234d26328c6daa12c5 Vincenzo <vincenzolisi12@gmail.com> 1770629915 +0100	commit: third commit
+d62dd73d886e77ea7a0953234d26328c6daa12c5 4948dc9e77770fa4f2f64c2c4fda4f8dde12ff2c Vincenzo <vincenzolisi12@gmail.com> 1770630137 +0100	checkout: moving from dev to master
+4948dc9e77770fa4f2f64c2c4fda4f8dde12ff2c 4948dc9e77770fa4f2f64c2c4fda4f8dde12ff2c Vincenzo <vincenzolisi12@gmail.com> 1770630164 +0100	checkout: moving from master to featuer/third-pr
+4948dc9e77770fa4f2f64c2c4fda4f8dde12ff2c e07c87d972c4a2a00268993bef6976aa0fa15192 Vincenzo <vincenzolisi12@gmail.com> 1770630281 +0100	checkout: moving from featuer/third-pr to main
+e07c87d972c4a2a00268993bef6976aa0fa15192 4948dc9e77770fa4f2f64c2c4fda4f8dde12ff2c Vincenzo <vincenzolisi12@gmail.com> 1770630301 +0100	checkout: moving from main to featuer/third-pr
+4948dc9e77770fa4f2f64c2c4fda4f8dde12ff2c d62dd73d886e77ea7a0953234d26328c6daa12c5 Vincenzo <vincenzolisi12@gmail.com> 1770630314 +0100	checkout: moving from featuer/third-pr to dev
+d62dd73d886e77ea7a0953234d26328c6daa12c5 e07c87d972c4a2a00268993bef6976aa0fa15192 Vincenzo <vincenzolisi12@gmail.com> 1770632975 +0100	checkout: moving from dev to main
+e07c87d972c4a2a00268993bef6976aa0fa15192 e07c87d972c4a2a00268993bef6976aa0fa15192 Vincenzo <vincenzolisi12@gmail.com> 1770633124 +0100	checkout: moving from main to main
+e07c87d972c4a2a00268993bef6976aa0fa15192 d1f810c0076685da497043f58422cd5d474bde9f Vincenzo <vincenzolisi12@gmail.com> 1770633145 +0100	merge origin/master: Merge made by the 'ort' strategy.
+d1f810c0076685da497043f58422cd5d474bde9f 4948dc9e77770fa4f2f64c2c4fda4f8dde12ff2c Vincenzo <vincenzolisi12@gmail.com> 1770633392 +0100	checkout: moving from main to featuer/third-pr
+4948dc9e77770fa4f2f64c2c4fda4f8dde12ff2c d62dd73d886e77ea7a0953234d26328c6daa12c5 Vincenzo <vincenzolisi12@gmail.com> 1770633398 +0100	checkout: moving from featuer/third-pr to dev
+d62dd73d886e77ea7a0953234d26328c6daa12c5 e18fe81bff322bb6a3135f134c72bc381c90e5d9 Vincenzo <vincenzolisi12@gmail.com> 1770634190 +0100	commit: fix gitignore
+e18fe81bff322bb6a3135f134c72bc381c90e5d9 e18fe81bff322bb6a3135f134c72bc381c90e5d9 Vincenzo <vincenzolisi12@gmail.com> 1770634221 +0100	checkout: moving from dev to dev
+e18fe81bff322bb6a3135f134c72bc381c90e5d9 e18fe81bff322bb6a3135f134c72bc381c90e5d9 Vincenzo <vincenzolisi12@gmail.com> 1770634245 +0100	checkout: moving from dev to feature/third-pr
+e18fe81bff322bb6a3135f134c72bc381c90e5d9 e18fe81bff322bb6a3135f134c72bc381c90e5d9 Vincenzo <vincenzolisi12@gmail.com> 1770634923 +0100	checkout: moving from feature/third-pr to feature/add-frontend
+e18fe81bff322bb6a3135f134c72bc381c90e5d9 705d93daf8b04344e3cfd8098ea24e565ab6a18d Vincenzo <vincenzolisi12@gmail.com> 1770634944 +0100	commit: add frontend
+705d93daf8b04344e3cfd8098ea24e565ab6a18d d1f810c0076685da497043f58422cd5d474bde9f Vincenzo <vincenzolisi12@gmail.com> 1770711603 +0100	checkout: moving from feature/add-frontend to main
+d1f810c0076685da497043f58422cd5d474bde9f e18fe81bff322bb6a3135f134c72bc381c90e5d9 Vincenzo <vincenzolisi12@gmail.com> 1770711686 +0100	checkout: moving from main to dev
+e18fe81bff322bb6a3135f134c72bc381c90e5d9 e18fe81bff322bb6a3135f134c72bc381c90e5d9 Vincenzo <vincenzolisi12@gmail.com> 1770711708 +0100	checkout: moving from dev to feature/third-pr

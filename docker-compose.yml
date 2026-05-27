@@ -1,0 +1,120 @@
+services:
+
+  redis:
+    image: redis:alpine
+    container_name: sneakverse-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - sneakverse-network
+
+  kafka:
+    image: apache/kafka:latest
+    container_name: sneakverse-kafka
+    ports:
+      - "9092:9092"
+    environment:
+      - KAFKA_NODE_ID=1
+      - KAFKA_PROCESS_ROLES=broker,controller
+      - KAFKA_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - KAFKA_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      - KAFKA_CONTROLLER_QUORUM_VOTERS=1@kafka:9093
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+      - KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=1
+      - KAFKA_TRANSACTION_STATE_LOG_MIN_ISR=1
+    networks:
+      - sneakverse-network
+
+  sneakverse-gateway:
+    build:
+      context: ./sneakverse-gateway
+    container_name: sneakverse-gateway
+    ports:
+      - "8000:8000" 
+    depends_on:
+      - monolith
+      - auth-service
+      - orders-service
+      - products-service
+    networks:
+      - sneakverse-network
+
+  monolith:
+    build:
+      context: ./sneakverse-backend
+    container_name: sneakverse-monolith
+    restart: on-failure
+    depends_on:
+      kafka:
+        condition: service_started
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/sneakverse?useSSL=false&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+      - ORDERS_SERVICE_URL=http://orders-service:8082/api/internal/orders
+    networks:
+      - sneakverse-network
+
+  auth-service:
+    build:
+      context: ./sneakverse-auth
+    container_name: sneakverse-auth
+    depends_on:
+      - redis
+    environment:
+      - SPRING_DATA_REDIS_HOST=redis
+      - SPRING_DATA_REDIS_PORT=6379
+      - SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/sneakverse?useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+    networks:
+      - sneakverse-network
+
+  orders-service:
+    build:
+      context: ./sneakverse-orders-service
+    container_name: sneakverse-orders-service
+    restart: on-failure
+    depends_on:
+      kafka:
+        condition: service_started
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/sneakverse_orders?useSSL=false&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+    networks:
+      - sneakverse-network
+
+  products-service:
+    build:
+      context: ./sneakverse-products
+    container_name: sneakverse-products
+    restart: on-failure
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/sneakverse_products?useSSL=false&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+    networks:
+      - sneakverse-network
+
+  frontend-user:
+    build:
+      context: ./sneakverse-frontend-user
+    container_name: sneakverse-frontend-user
+    ports:
+      - "3001:80"
+    depends_on:
+      - monolith
+      - orders-service
+      - sneakverse-gateway
+    networks:
+      - sneakverse-network
+
+
+networks:
+  sneakverse-network:
+    driver: bridge

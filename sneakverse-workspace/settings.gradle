@@ -1,0 +1,32 @@
+pluginManagement {
+	plugins {
+		id "com.liferay.portal.tools.rest.builder" version "latest.release"
+	}
+	resolutionStrategy {
+		eachPlugin {
+			if (requested.id.id == "com.liferay.portal.tools.rest.builder") {
+				useModule("com.liferay:com.liferay.gradle.plugins.rest.builder:latest.release")
+			}
+		}
+	}
+	repositories {
+		maven {
+			url "https://repository-cdn.liferay.com/nexus/content/groups/public"
+		}
+		gradlePluginPortal()
+	}
+}
+
+buildscript {
+	dependencies {
+		classpath group: "com.liferay", name: "com.liferay.gradle.plugins.workspace", version: "latest.release"
+	}
+	repositories {
+		mavenLocal()
+		maven {
+			url "https://repository-cdn.liferay.com/nexus/content/groups/public"
+		}
+	}
+}
+
+apply plugin: "com.liferay.workspace"

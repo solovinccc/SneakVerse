@@ -1,0 +1,110 @@
+info:
+    description: "SneakverseAuth REST API - Modulo per la gestione della sessione"
+    license:
+        name: "Apache 2.0"
+        url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+    title: "SneakverseAuth"
+    version: "v1.0"
+openapi: 3.0.1
+
+paths:
+    /auth/me:
+        get:
+            tags: ["Auth"]
+            operationId: getCurrentUser
+            summary: "Recupera l'user corrente"
+            responses:
+                200:
+                    description: "Utente recuperato con successo"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/SessionUser'
+                        application/xml:
+                            schema:
+                                $ref: '#/components/schemas/SessionUser'
+
+    /auth/login:
+        post:
+            tags: ["Auth"]
+            summary: "Effettua il login dell'utente"
+            operationId: "loginUser"
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/LoginRequest'
+                    application/xml:
+                        schema:
+                            $ref: '#/components/schemas/LoginRequest'
+            responses:
+                200:
+                    description: "Login effettuato con successo"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/SessionUser"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/SessionUser"
+
+    /auth/register:
+        post:
+            tags: ["Auth"]
+            summary: "Registra un nuovo utente"
+            operationId: "registerUser"
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/RegisterRequest'
+                    application/xml:
+                        schema:
+                            $ref: '#/components/schemas/RegisterRequest'
+            responses:
+                200:
+                    description: "Registrazione effettuata con successo"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/SessionUser'
+                        application/xml:
+                            schema:
+                                $ref: '#/components/schemas/SessionUser'
+
+components:
+    schemas:
+        SessionUser:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: int64
+                email:
+                    type: string
+                firstName:
+                    type: string
+                lastName:
+                    type: string
+                isLoggedIn:
+                    type: boolean
+
+        LoginRequest:
+            type: object
+            properties:
+                email:
+                    type: string
+                password:
+                    type: string
+
+        RegisterRequest:
+            type: object
+            properties:
+                firstName:
+                    type: string
+                lastName:
+                    type: string
+                email:
+                    type: string
+                password:
+                    type: string

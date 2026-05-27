@@ -1,0 +1,55 @@
+# DEPLOYMENT
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orders-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sneakverse-orders
+  template:
+    metadata:
+      labels:
+        app: sneakverse-orders
+    spec:
+      containers:
+        - name: orders-service
+          image: sneakverse-orders:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8082
+          env:
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: sneakverse-config
+                  key: db-url-orders
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: sneakverse-secrets
+                  key: db-username
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: sneakverse-secrets
+                  key: db-password
+            - name: SPRING_KAFKA_BOOTSTRAP_SERVERS
+              valueFrom:
+                configMapKeyRef:
+                  name: sneakverse-config
+                  key: kafka-servers
+---
+# SERVICE
+apiVersion: v1
+kind: Service
+metadata:
+  name: sneakverse-orders
+spec:
+  selector:
+    app: sneakverse-orders
+  ports:
+    - protocol: TCP
+      port: 8082
+      targetPort: 8082

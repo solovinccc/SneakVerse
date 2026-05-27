@@ -1,0 +1,56 @@
+# DEPLOYMENT
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-deployment
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: sneakverse-auth
+  template:
+    metadata:
+      labels:
+        app: sneakverse-auth
+    spec:
+      containers:
+        - name: auth-service
+          image: sneakverse-auth:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8083
+          env:
+            - name: SPRING_DATA_REDIS_HOST
+              value: "redis"
+            - name: SPRING_DATA_REDIS_PORT
+              value: "6379" 
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: sneakverse-config
+                  key: db-url-monolith
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: sneakverse-secrets
+                  key: db-username
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: sneakverse-secrets 
+                  key: db-password 
+
+---
+
+# SERVICE
+apiVersion: v1
+kind: Service
+metadata:
+  name: sneakverse-auth
+spec:
+  selector:
+    app: sneakverse-auth
+  ports:
+  - protocol: TCP
+    port: 8083
+    targetPort: 8083

@@ -1,0 +1,15 @@
+{ 
+  "preset": "liferay-npm-bundler-preset-create-react-app",
+  "sources": ["src"],
+  "max-parallel-files": 32, 
+  "create-jar": { 
+    "output-dir": "dist",
+    "features": { 
+      "js-extender": true, 
+      "web-context": "/sneakverse-frontend", 
+      "localization": "features/localization/Language", 
+      "configuration": "features/configuration.json" 
+    } 
+  }, 
+  "dump-report": true 
+}
